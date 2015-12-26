@@ -1,0 +1,62 @@
+---
+title       : Shiny t-tests
+subtitle    : A useful tool for comparing different types of t-tests
+author      : William H. Knapp III
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Purpose
+
+* Do you want to run a two-sample t-test?
+* Do you want to see how to report the results of t-tests in APA format?
+* Do you want to see how changing assumptions can affect t-tests?
+
+If so, check out my [Shiny 2-sample t-test app](https://knappsych.shinyapps.io/Data_Products_Demo_t-tests).
+
+---
+
+## How it works
+
+1. Users enter data for two groups of observations.
+2. Users indicate what type of test will be used (i.e. independent or paired).
+3. Users indicate whether or not the equivalence of variance assumption is reasonable.
+4. Users submit their information.
+5. It returns the code needed to run the test in R, the summarized results, and a figure comparing the two groups.
+
+---
+
+## An Example
+There are two groups of data:
+```{r echo=FALSE}
+set.seed(783)
+group1<-round(rnorm(10,10,5))
+group2<-round(rnorm(10,15,5))
+group1
+group2
+```
+After entering the data the user selects an independent t-test where the variance for the two groups are assumed to be equal.
+
+The users see the following code:
+```{r eval=FALSE}
+t.test(group1,group2,paired=FALSE,var.equal=TRUE)
+```
+But instead of seeing the following output...
+
+---
+
+```{r echo=FALSE}
+t.test(group1,group2,paired=FALSE,var.equal=TRUE)
+```
+They see:
+```
+t(18) = -1.3, p = .219
+```
+and an accompanying figure.
+
+### [Try it for yourself!](https://knappsych.shinyapps.io/Data_Products_Demo_t-tests)
